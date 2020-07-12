@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const { promisify } = require('util')
 const readdirAsync = promisify(fs.readdir)
-const categoryProtected = require('../services/category-protection')
 
 
 const findCategories = async () => {
@@ -24,7 +23,7 @@ const findRandomReaction = async () => {
   try {
     const categories = await findCategories()
     const randomCategory = categories[Math.floor(Math.random() * categories.length)]
-    const reactions = await findReactions(category)
+    const reactions = await findReactions(randomCategory)
     return reactions[Math.floor(Math.random() * reactions.length)]
   } catch(err) {
     console.error(err)
