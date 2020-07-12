@@ -1,12 +1,9 @@
 const route = require('express-promise-router')()
-const fs = require('fs')
-const path = require('path')
-const { promisify } = require('util')
-const readdirAsync = promisify(fs.readdir)
+const {findCategories} = require('../services/file-system')
 route
   .get('/', async (req, res, next) => {
     try {
-      const categories = await readdirAsync(path.join(__dirname, '../reactions'))
+      const categories = await findCategories()
       res.json(categories)
     } catch(err) {
       console.error(err)

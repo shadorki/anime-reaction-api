@@ -8,7 +8,7 @@ const {ClientError, ServerError} = require('./services/errorhandling')
 app.use(cors())
 app.use(express.json())
 
-app.use('/reactions', express.static(path.join(__dirname, 'reactions')))
+app.use('/', express.static(path.join(__dirname, 'reactions')))
 
 app.use('/api', require('./routes/routes'))
 
