@@ -1,5 +1,5 @@
 const route = require('express-promise-router')()
-const {findCategories} = require('../services/file-system')
+const { findCategories } = require('../services/file-system')
 route
   .get('/', async (req, res, next) => {
     try {

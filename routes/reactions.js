@@ -1,17 +1,30 @@
 const route = require('express-promise-router')()
-const { findCategories, findReactions } = require('../services/file-system')
+const reactionFinder = require('../services/file-system')
 const { ClientError } = require('../services/errorhandling')
+const categoryProtected = require('../services/category-protection')
 
 route
-  .get('/', async (req, res, next) => {
+  .get('/', categoryProtected, async (req, res, next) => {
     try {
       const { category } = req.query
-      if(!category) throw new ClientError('Please supply a category.', 400)
-      const categoriesArr = await findCategories()
-      const categories = new Set(categoriesArr)
-      if(!categories.has(category)) throw new ClientError('Please send a valid category.', 400)
-      const reactionImages = await findReactions(category)
+      const reactionImages = await reactionFinder.findReactions(category)
       res.json(reactionImages)
+    } catch(err) {
+      console.error(err)
+      next(err)
+    }
+  })
+  .get('/random', async(req, res, next) => {
+    try {
+      const { category } = req.query;
+      if(typeof category !== 'undefined') {
+        await categoryProtected(req, res, next)
+        const reaction = await reactionFinder.findRandomReactionWithCategory(category)
+        res.json(reaction)
+      } else {
+        const reaction = await reactionFinder.findRandomReaction()
+        res.json(reaction)
+      }
     } catch(err) {
       console.error(err)
       next(err)

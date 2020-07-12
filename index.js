@@ -12,10 +12,6 @@ app.use('/', express.static(path.join(__dirname, 'reactions')))
 
 app.use('/api', require('./routes/routes'))
 
-
-
-
-
 app.use((err, req, res, next) => {
   if (err instanceof ClientError || err instanceof ServerError) {
     res.status(err.status).json({
