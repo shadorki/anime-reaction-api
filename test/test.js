@@ -7,6 +7,15 @@ chai.use(chaiHttp)
 
 const { expect } = chai
 
+function isValidUrl(string) {
+  try {
+    new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return true;
+}
+
 describe('Reactions API', () => {
 
   describe("GET /categories", () => {
@@ -61,7 +70,7 @@ describe('Reactions API', () => {
       }
     })
 
-    it('It should receive valid image link',  done => {
+    it('It should receive valid url',  done => {
       chai.request(server)
         .get('/api/categories')
         .end((err, res) => {
@@ -76,16 +85,8 @@ describe('Reactions API', () => {
                 expect.fail('Error: ' + JSON.stringify(err))
               }
               const [imageUrl] = res.body
-              console.log(imageUrl)
-              chai.request(imageUrl)
-                .get('/')
-                .end((err, res) => {
-                  if (err) {
-                    expect.fail('Error: ' + JSON.stringify(err))
-                  }
-                  expect(res).to.have.status(200)
-                  done()
-                })
+              expect(isValidUrl(imageUrl)).to.be.true
+              done()
             })
         })
     })
