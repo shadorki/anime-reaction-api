@@ -46,8 +46,29 @@ const categoriesBlock = categories => {
   }
 }
 
+const notFoundBlock = image => {
+  return {
+      "response_type": "ephemeral",
+      "blocks": [
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "WAA- I- I can't understand that command.  P- P- Pwease use the /weeb categories command to see what I can handle uwu."
+        },
+        "accessory": {
+          "type": "image",
+          "image_url": image,
+          "alt_text": "404"
+        }
+      }
+    ]
+  }
+}
+
 
 module.exports = {
   imageBlock,
-  categoriesBlock
+  categoriesBlock,
+  notFoundBlock
 }

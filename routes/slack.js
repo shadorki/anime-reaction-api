@@ -1,7 +1,7 @@
 const route = require('express-promise-router')()
 const reactionFinder = require('../services/file-system')
 const { ClientError, ServerError } = require('../services/errorhandling')
-const { imageBlock, categoriesBlock } = require('../services/slack-blocks')
+const { imageBlock, categoriesBlock, notFoundBlock } = require('../services/slack-blocks')
 
 route
   .post('/', async (req, res, next) => {
@@ -14,12 +14,15 @@ route
         res.json(image)
       } else {
         const [command] = commands
-        console.log(commands)
-        console.log(command)
+        const categories = await reactionFinder.findCategories()
         if(command === 'categories') {
-          const categories = await reactionFinder.findCategories()
           const categoryBlock = categoriesBlock(categories)
           res.json(categoryBlock)
+        } else {
+          if(!categories.includes(command)) {
+            const sadReaction = reactionFinder.findRandomReactionWithCategory('sad')
+            res.json(sadReaction)
+          }
         }
       }
     } catch(err) {
