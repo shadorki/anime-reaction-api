@@ -22,6 +22,7 @@ const imageBlock = (image, category = 'Anime Reaction') => {
               "text": "Shuffle",
               "emoji": true
             },
+            "style": "primary",
             "value": "new_reaction"
           },
           {
@@ -31,6 +32,7 @@ const imageBlock = (image, category = 'Anime Reaction') => {
               "text": "Cancel",
               "emoji": true
             },
+            "style": "danger",
             "value": "cancel_reaction"
           }
         ]

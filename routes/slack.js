@@ -6,7 +6,6 @@ const { imageBlock, categoriesBlock, notFoundBlock } = require('../services/slac
 route
   .post('/', async (req, res, next) => {
     try {
-      console.log(req.body)
       const [command] = req.body.text.split(' ')
       if(!command) {
         // Send a random reaction
@@ -31,6 +30,14 @@ route
         }
       }
     } catch(err) {
+      next(err)
+    }
+  })
+  .post('/interaction', async (req, res, next) => {
+    try {
+      console.log(req.body)
+    } catch(err) {
+      console.error(err)
       next(err)
     }
   })
