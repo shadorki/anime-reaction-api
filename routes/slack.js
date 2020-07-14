@@ -20,7 +20,7 @@ route
           res.json(categoryBlock)
         } else {
           if(!categories.includes(command)) {
-            const sadReaction = reactionFinder.findRandomReactionWithCategory('sad')
+            const sadReaction = await reactionFinder.findRandomReactionWithCategory('sad')
             res.json(sadReaction)
           }
         }
