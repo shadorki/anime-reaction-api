@@ -6,7 +6,7 @@ const { imageBlock, categoriesBlock } = require('../services/slack-blocks')
 route
   .post('/', async (req, res, next) => {
     try {
-      const commands = req.body.text.split('')
+      const commands = req.body.text.split(' ')
       if(!commands.length) {
         // Send a random reaction
         const reaction = await reactionFinder.findRandomReaction()
@@ -14,6 +14,8 @@ route
         res.json(image)
       } else {
         const [command] = commands
+        console.log(commands)
+        console.log(command)
         if(command === 'categories') {
           const categories = await reactionFinder.findCategories()
           const categoryBlock = categoriesBlock(categories)
