@@ -22,6 +22,10 @@ route
             const sadReaction = await reactionFinder.findRandomReactionWithCategory('sad')
             const notFound = notFoundBlock(sadReaction)
             res.json(notFound)
+          } else {
+            const reaction = await reactionFinder.findRandomReactionWithCategory(command)
+            const image = imageBlock(reaction)
+            res.json(image)
           }
         }
       }
