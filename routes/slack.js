@@ -5,8 +5,7 @@ const { ClientError, ServerError } = require('../services/errorhandling')
 route
   .post('/', async (req, res, next) => {
     try {
-      console.log(req.headers)
-      console.log(req.header)
+      console.log(req.body)
       res.send("https://anime-reactions.uzairashraf.dev/surprised/O6.jpg")
     } catch(err) {
       next(err)
