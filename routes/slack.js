@@ -21,7 +21,8 @@ route
         } else {
           if(!categories.includes(command)) {
             const sadReaction = await reactionFinder.findRandomReactionWithCategory('sad')
-            res.json(sadReaction)
+            const notFound = notFoundBlock(sadReaction)
+            res.json(notFound)
           }
         }
       }
