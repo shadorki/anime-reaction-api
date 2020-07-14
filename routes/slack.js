@@ -6,14 +6,13 @@ const { imageBlock, categoriesBlock, notFoundBlock } = require('../services/slac
 route
   .post('/', async (req, res, next) => {
     try {
-      const commands = req.body.text.split(' ')
-      if(!commands.length) {
+      const [command] = req.body.text.split(' ')
+      if(!command) {
         // Send a random reaction
         const reaction = await reactionFinder.findRandomReaction()
         const image = imageBlock(reaction)
         res.json(image)
       } else {
-        const [command] = commands
         const categories = await reactionFinder.findCategories()
         if(command === 'categories') {
           const categoryBlock = categoriesBlock(categories)
