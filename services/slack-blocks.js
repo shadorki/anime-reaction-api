@@ -11,6 +11,29 @@ const imageBlock = (image, category = 'Anime Reaction') => {
         },
         "image_url": image,
         "alt_text": category
+      },
+      {
+        "type": "actions",
+        "elements": [
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "Shuffle",
+              "emoji": true
+            },
+            "value": "new_reaction"
+          },
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "Cancel",
+              "emoji": true
+            },
+            "value": "cancel_reaction"
+          }
+        ]
       }
     ]
   }

@@ -6,6 +6,7 @@ const { imageBlock, categoriesBlock, notFoundBlock } = require('../services/slac
 route
   .post('/', async (req, res, next) => {
     try {
+      console.log(req.body)
       const [command] = req.body.text.split(' ')
       if(!command) {
         // Send a random reaction
