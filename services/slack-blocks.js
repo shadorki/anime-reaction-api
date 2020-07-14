@@ -16,6 +16,38 @@ const imageBlock = (image, category = 'Anime Reaction') => {
   }
 }
 
+const categoriesBlock = categories => {
+  const categoryList = categories.reduce((acc, cur) => {
+    return acc + (cur + ' \n')
+  }, '')
+  return {
+    "response_type": "ephemeral",
+    "blocks": [
+      {
+        "type": "section",
+        "text": {
+          "type": "plain_text",
+          "text": "Here are the categories you can pick from.",
+          "emoji": true
+        }
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "plain_text",
+          "text": categoryList,
+          "emoji": true
+        }
+      }
+    ]
+  }
+}
+
+
 module.exports = {
-  imageBlock
+  imageBlock,
+  categoriesBlock
 }

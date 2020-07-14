@@ -1,7 +1,7 @@
 const route = require('express-promise-router')()
 const reactionFinder = require('../services/file-system')
 const { ClientError, ServerError } = require('../services/errorhandling')
-const { imageBlock } = require('../services/slack-blocks')
+const { imageBlock, categoriesBlock } = require('../services/slack-blocks')
 
 route
   .post('/', async (req, res, next) => {
@@ -12,6 +12,13 @@ route
         const reaction = await reactionFinder.findRandomReaction()
         const image = imageBlock(reaction)
         res.json(image)
+      } else {
+        const [command] = commands
+        if(command === 'categories') {
+          const categories = await reactionFinder.findCategories()
+          const categoryBlock = categoriesBlock(categories)
+          res.json(categoryBlock)
+        }
       }
     } catch(err) {
       next(err)
