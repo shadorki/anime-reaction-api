@@ -37,8 +37,9 @@ route
   .post('/interaction', async (req, res, next) => {
     try {
       console.log(req.body)
-      const { response_url } = req.body.payload
-      const interaction = req.body.payload.actions[0].value
+      const payload = JSON.parse(req.body.payload)
+      const { response_url } = payload
+      const interaction = payload.actions[0].value
       if(interaction === 'cancel_reaction') {
         const response = await fetch(response_url, {
           method: 'POST',
