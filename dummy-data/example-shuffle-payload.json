@@ -1,0 +1,95 @@
+{
+  "type": "block_actions",
+  "user": {
+    "id": "URW6S0014",
+    "username": "uzinatorcl",
+    "name": "uzinatorcl",
+    "team_id": "TRGGAH9SP"
+  },
+  "api_app_id": "A017E1LUYKB",
+  "token": "CgOuBnoNef1WdISUFL1Hfgdu",
+  "container": {
+    "type": "message",
+    "message_ts": "1594761815.000500",
+    "channel_id": "CRW6S08UE",
+    "is_ephemeral": false
+  },
+  "trigger_id": "1234663425254.866554587907.22e4ce748bb01d22dabbcb7317dc6913",
+  "team": {
+    "id": "TRGGAH9SP",
+    "domain": "uzair-co"
+  },
+  "channel": {
+    "id": "CRW6S08UE",
+    "name": "general"
+  },
+  "message": {
+    "type": "message",
+    "subtype": "bot_message",
+    "text":"This content can\'t be displayed.",
+    "ts": "1594761815.000500",
+    "bot_id": "B016LLCDXLP",
+    "blocks": [
+      {
+        "type": "image",
+        "block_id": "Ft0o9",
+        "image_url": "https:\\/\\/anime-reactions.uzairashraf.dev\\/smug\\/smol.jpg",
+        "alt_text": "Anime Reaction",
+        "title": {
+          "type": "plain_text",
+          "text": "Anime Reaction",
+          "emoji": true
+        },
+        "fallback": "1200x1514px image",
+        "image_width": 1200,
+        "image_height": 1514,
+        "image_bytes": 161770
+      },
+      {
+        "type": "actions",
+        "block_id": "lK2c",
+        "elements": [
+          {
+            "type": "button",
+            "action_id": "5vi\\/H",
+            "text": {
+              "type": "plain_text",
+              "text": "Shuffle",
+              "emoji": true
+            },
+            "style": "primary",
+            "value": "new_reaction"
+          },
+          {
+            "type": "button",
+            "action_id": "RTzx",
+            "text": {
+              "type": "plain_text",
+              "text": "Cancel",
+              "emoji": true
+            },
+            "style": "danger",
+            "value": "cancel_reaction"
+          }
+        ]
+      }
+    ]
+  },
+  "response_url": "https:\\/\\/hooks.slack.com\\/actions\\/TRGGAH9SP\\/1241393787874\\/by2PsDuVi4htbTN0KGDPc4TS",
+  "actions": [
+    {
+      "action_id": "5vi\\/H",
+      "block_id": "lK2c",
+      "text": {
+        "type": "plain_text",
+        "text": "Shuffle",
+        "emoji": true
+      },
+      "value": "new_reaction",
+      "style": "primary",
+      "type": "button",
+      "action_ts": "1594761817.281217"
+    }
+  ]
+}
+}
