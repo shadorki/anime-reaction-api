@@ -13,6 +13,7 @@ route
       if(!command) {
         // Send a random reaction
         const reaction = await reactionFinder.findRandomReaction()
+        reaction.category = 'random'
         const image = imagePendingBlock(reaction)
         console.log(image)
         res.json(image)
@@ -50,7 +51,13 @@ route
           isResponseSuccessful = await cancelMessage(response_url)
         },
         Shuffle: async () => {
-          const nextReaction = await reactionFinder.findRandomReactionWithCategory(data)
+          let nextReaction = null
+          if(data === 'random') {
+            nextReaction = await reactionFinder.findRandomReaction()
+            nextReaction.category = 'random'
+          } else {
+            nextReaction = await reactionFinder.findRandomReactionWithCategory(data)
+          }
           const nextImage = imagePendingBlock(nextReaction)
           isResponseSuccessful = await shuffleMessage(response_url, nextImage)
         },
@@ -68,27 +75,6 @@ route
       } else {
         throw new ServerError('Unexpected Error Occurred', 500)
       }
-
-      // if(interaction === 'Cancel') {
-      //   const isCancelled = await cancelMessage(response_url)
-      //   if(isCancelled) {
-      //     res.status(200)
-      //   } else {
-          // throw new ServerError('Unexpected Error Occurred', 500)
-      //   }
-      // }
-      // if (interaction === 'Shuffle') {
-      //   const category = payload.actions[0].value
-      //   console.log(category)
-      //   const nextReaction = await reactionFinder.findRandomReactionWithCategory(category)
-      //   const nextImage = imagePendingBlock(nextReaction)
-      //   const isShuffled = await shuffleMessage(response_url, nextImage)
-      //   if (isShuffled) {
-      //     res.status(200)
-      //   } else {
-      //     throw new ServerError('Unexpected Error Occurred', 500)
-      //   }
-      // }
     } catch(err) {
       console.error(err)
       next(err)
