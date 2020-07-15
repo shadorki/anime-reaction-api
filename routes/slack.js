@@ -2,7 +2,7 @@ const route = require('express-promise-router')()
 const reactionFinder = require('../services/file-system')
 const { ClientError, ServerError } = require('../services/errorhandling')
 const { imageBlock, categoriesBlock, notFoundBlock, imagePendingBlock } = require('../services/slack-blocks')
-const { cancelMessage, shuffleMessage } = require('../services/slack-interactions')
+const { cancelMessage, shuffleMessage, sendMessage } = require('../services/slack-interactions')
 
 const fetch = require('node-fetch')
 
