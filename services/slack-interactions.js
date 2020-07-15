@@ -27,10 +27,11 @@ const shuffleMessage = async (responseUrl, image) => {
       },
       body: JSON.stringify({
         "replace_original": "true",
-        "image": image
+        // "image": image
+        "text": "Thanks for your request, we'll process it and get back to you."
       })
     })
-    console.log(response)
+    console.log(JSON.stringify(response))
     return response.status === 200
   } catch(err) {
     console.error(err)
