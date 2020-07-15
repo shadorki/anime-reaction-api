@@ -29,7 +29,11 @@ const findRandomReaction = async () => {
     const randomCategory = categories[Math.floor(Math.random() * categories.length)]
     const reactions = await findReactions(randomCategory)
     if(!reactions) return null
-    return reactions[Math.floor(Math.random() * reactions.length)]
+    const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]
+    return {
+      reaction: randomReaction,
+      category: randomCategory
+    }
   } catch(err) {
     console.error(err)
     return null
@@ -39,7 +43,11 @@ const findRandomReactionWithCategory = async category => {
   try {
     const reactions = await findReactions(category)
     if(!reactions) return null
-    return reactions[Math.floor(Math.random() * reactions.length)]
+    const randomReaction = reactions[Math.floor(Math.random() * reactions.length)]
+    return {
+      reaction: randomReaction,
+      category
+    }
   } catch(err) {
     console.error(err)
     return null

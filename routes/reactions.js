@@ -21,7 +21,7 @@ route
       if(typeof category === 'undefined') {
         const reaction = await reactionFinder.findRandomReaction()
         if(!reaction) throw new ServerError('Unexpected Error Occurred', 500)
-        return res.json({reaction})
+        return res.json(reaction)
       } else {
         if (!category) throw new ClientError('Please supply a category.', 400)
         const categoriesArr = await reactionFinder.findCategories()
@@ -29,7 +29,7 @@ route
         if (!categories.has(category)) throw new ClientError('Please send a valid category.', 400)
         const reaction = await reactionFinder.findRandomReactionWithCategory(category)
         if (!reaction) throw new ServerError('Unexpected Error Occurred', 500)
-        return res.json({reaction})
+        return res.json(reaction)
       }
     } catch(err) {
       console.error(err)

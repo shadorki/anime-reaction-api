@@ -1,6 +1,7 @@
-const imageBlock = (image, category = 'Anime Reaction') => {
+const imagePendingBlock = (image, category) => {
+  if(!image || !category) return null
   return {
-    "response_type": "in_channel",
+    "response_type": "ephemeral",
     "blocks": [
       {
         "type": "image",
@@ -19,11 +20,20 @@ const imageBlock = (image, category = 'Anime Reaction') => {
             "type": "button",
             "text": {
               "type": "plain_text",
-              "text": "Shuffle",
+              "text": "Send",
               "emoji": true
             },
             "style": "primary",
-            "value": "new_reaction"
+            "value": "send_reaction"
+          },
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "Shuffle",
+              "emoji": true
+            },
+            "value": "shuffle_reaction"
           },
           {
             "type": "button",
@@ -36,6 +46,24 @@ const imageBlock = (image, category = 'Anime Reaction') => {
             "value": "cancel_reaction"
           }
         ]
+      }
+    ]
+  }
+}
+
+const imageBlock = (image, category = 'Anime Reaction') => {
+  return {
+    "response_type": "in_channel",
+    "blocks": [
+      {
+        "type": "image",
+        "title": {
+          "type": "plain_text",
+          "text": category,
+          "emoji": true
+        },
+        "image_url": image,
+        "alt_text": category
       }
     ]
   }
@@ -95,5 +123,6 @@ const notFoundBlock = image => {
 module.exports = {
   imageBlock,
   categoriesBlock,
-  notFoundBlock
+  notFoundBlock,
+  imagePendingBlock
 }

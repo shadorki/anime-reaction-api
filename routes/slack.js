@@ -1,7 +1,9 @@
 const route = require('express-promise-router')()
 const reactionFinder = require('../services/file-system')
 const { ClientError, ServerError } = require('../services/errorhandling')
-const { imageBlock, categoriesBlock, notFoundBlock } = require('../services/slack-blocks')
+const { imageBlock, categoriesBlock, notFoundBlock, imagePendingBlock } = require('../services/slack-blocks')
+const { cancelMessage, shuffleMessage } = require('../services/slack-interactions')
+
 const fetch = require('node-fetch')
 
 route
@@ -11,7 +13,7 @@ route
       if(!command) {
         // Send a random reaction
         const reaction = await reactionFinder.findRandomReaction()
-        const image = imageBlock(reaction)
+        const image = imagePendingBlock(...reaction)
         res.json(image)
       } else {
         const categories = await reactionFinder.findCategories()
@@ -21,11 +23,11 @@ route
         } else {
           if(!categories.includes(command)) {
             const sadReaction = await reactionFinder.findRandomReactionWithCategory('sad')
-            const notFound = notFoundBlock(sadReaction)
+            const notFound = notFoundBlock(sadReaction.reaction)
             res.json(notFound)
           } else {
             const reaction = await reactionFinder.findRandomReactionWithCategory(command)
-            const image = imageBlock(reaction)
+            const image = imagePendingBlock(...reaction)
             res.json(image)
           }
         }
@@ -41,16 +43,8 @@ route
       const { response_url } = payload
       const interaction = payload.actions[0].value
       if(interaction === 'cancel_reaction') {
-        const response = await fetch(response_url, {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify({
-            "delete_original": "true"
-          })
-        })
-        if(response.status === 200) {
+        const isCancelled = await cancelMessage(response_url)
+        if(isCancelled) {
           res.status(200)
         } else {
           throw new ServerError('Unexpected Error Occurred', 500)
