@@ -39,7 +39,6 @@ route
   })
   .post('/interaction', async (req, res, next) => {
     try {
-      console.log(req.body)
       const payload = JSON.parse(req.body.payload)
       const { response_url } = payload
       const interaction = payload.actions[0].text.text
@@ -53,6 +52,7 @@ route
       }
       if (interaction === 'Shuffle') {
         const category = payload.actions[0].value
+        console.log(category)
         const nextReaction = await reactionFinder.findRandomReactionWithCategory(category)
         const isShuffled = await shuffleMessage(response_url, nextReaction.reaction)
         if (isShuffled) {
