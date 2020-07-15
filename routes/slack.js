@@ -82,13 +82,15 @@ route
   .get('/oauth', async (req, res, next) => {
     try {
       const { code } = req.query
-      const response = await fetch('https://slack.com/api/oauth.access?code='
-                                    + code +
-                                    '&client_id=' + process.env.SLACK_CLIENT_ID +
-                                    '&client_secret=' + process.env.SLACK_CLIENT_SECRET +
-                                    '&redirect_uri=' + process.env.SLACK_REDIRECT_URI
-                                    )
+      const url = 'https://slack.com/api/oauth.access?code='
+        + code +
+        '&client_id=' + process.env.SLACK_CLIENT_ID +
+        '&client_secret=' + process.env.SLACK_CLIENT_SECRET +
+        '&redirect_uri=' + process.env.SLACK_REDIRECT_URI
+      console.log(url)
+      const response = await fetch(url)
       const data = await response.json()
+      console.log(data)
       if(data.ok) {
         res.status(200)
       } else {
