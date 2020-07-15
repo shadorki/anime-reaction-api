@@ -18,7 +18,7 @@ const cancelMessage = async responseUrl => {
   }
 }
 
-const shuffleMessage = async (responseUrl, image) => {
+const shuffleMessage = async (responseUrl, nextImage) => {
   try {
     const response = await fetch(responseUrl, {
       method: 'POST',
@@ -27,8 +27,7 @@ const shuffleMessage = async (responseUrl, image) => {
       },
       body: JSON.stringify({
         "replace_original": "true",
-        // "image": image
-        "text": "Thanks for your request, we'll process it and get back to you."
+        "blocks": nextImage.blocks
       })
     })
     console.log(JSON.stringify(response))

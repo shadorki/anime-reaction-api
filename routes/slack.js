@@ -54,7 +54,8 @@ route
         const category = payload.actions[0].value
         console.log(category)
         const nextReaction = await reactionFinder.findRandomReactionWithCategory(category)
-        const isShuffled = await shuffleMessage(response_url, nextReaction.reaction)
+        const nextImage = imagePendingBlock(nextReaction)
+        const isShuffled = await shuffleMessage(response_url, nextImage)
         if (isShuffled) {
           res.status(200)
         } else {
