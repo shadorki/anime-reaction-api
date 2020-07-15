@@ -110,7 +110,7 @@ const notFoundBlock = image => {
         "type": "section",
         "text": {
           "type": "mrkdwn",
-          "text": "WAA- I- I can't understand that command.  P- P- Pwease use the /weeb categories command to see what I can handle uwu."
+          "text": "WAA- I- I can't understand that command.  P- P- Pwease use the /nene categories command to see what I can handle uwu."
         },
         "accessory": {
           "type": "image",
