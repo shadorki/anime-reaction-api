@@ -13,7 +13,7 @@ route
       if(!command) {
         // Send a random reaction
         const reaction = await reactionFinder.findRandomReaction()
-        const image = imagePendingBlock(...reaction)
+        const image = imagePendingBlock(reaction)
         console.log(image)
         res.json(image)
       } else {
@@ -28,7 +28,7 @@ route
             res.json(notFound)
           } else {
             const reaction = await reactionFinder.findRandomReactionWithCategory(command)
-            const image = imagePendingBlock(...reaction)
+            const image = imagePendingBlock(reaction)
             res.json(image)
           }
         }

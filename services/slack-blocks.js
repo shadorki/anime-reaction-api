@@ -1,4 +1,4 @@
-const imagePendingBlock = (image, category) => {
+const imagePendingBlock = ({image, category}) => {
   if(!image || !category) return null
   return {
     "response_type": "ephemeral",
@@ -51,7 +51,7 @@ const imagePendingBlock = (image, category) => {
   }
 }
 
-const imageBlock = (image, category = 'Anime Reaction') => {
+const imageBlock = ({image, category}) => {
   return {
     "response_type": "in_channel",
     "blocks": [
