@@ -14,6 +14,7 @@ route
         // Send a random reaction
         const reaction = await reactionFinder.findRandomReaction()
         const image = imagePendingBlock(...reaction)
+        console.log(image)
         res.json(image)
       } else {
         const categories = await reactionFinder.findCategories()
@@ -44,7 +45,7 @@ route
       const interaction = payload.actions[0].value
       if(interaction === 'cancel_reaction') {
         const isCancelled = await cancelMessage(response_url)
-        if(!isCancelled) {
+        if(isCancelled) {
           res.status(200)
         } else {
           throw new ServerError('Unexpected Error Occurred', 500)
