@@ -79,5 +79,25 @@ route
       next(err)
     }
   })
+  .get('/oauth', async (req, res, next) => {
+    try {
+      const { code } = req.query
+      const response = await fetch('https://slack.com/api/oauth.access?code='
+                                    + code +
+                                    '&client_id=' + process.env.SLACK_CLIENT_ID +
+                                    '&client_secret=' + process.env.SLACK_CLIENT_SECRET +
+                                    '&redirect_uri=' + process.env.SLACK_REDIRECT_URI
+                                    )
+      const data = await response.json()
+      if(data.ok) {
+        res.status(200)
+      } else {
+        throw new ServerError('Unexpected Error Occurred', 500)
+      }
+    } catch(err) {
+      console.log(err)
+      next(err)
+    }
+  })
 
 module.exports = route
