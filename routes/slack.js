@@ -108,9 +108,9 @@ route
         },
         body: formBody
       })
-      const data = await response.json()
-      console.log(data)
-      if(data.ok) {
+      const responseData = await response.json()
+      console.log(responseData)
+      if(responseData.ok) {
         res.status(200)
       } else {
         throw new ServerError('Unexpected Error Occurred', 500)
