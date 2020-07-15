@@ -15,7 +15,6 @@ route
         const reaction = await reactionFinder.findRandomReaction()
         reaction.category = 'random'
         const image = imagePendingBlock(reaction)
-        console.log(image)
         res.json(image)
       } else {
         const categories = await reactionFinder.findCategories()

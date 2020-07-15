@@ -30,7 +30,6 @@ const shuffleMessage = async (responseUrl, nextImage) => {
         "blocks": nextImage.blocks
       })
     })
-    console.log(JSON.stringify(response))
     return response.status === 200
   } catch(err) {
     console.error(err)
@@ -51,7 +50,6 @@ const sendMessage = async(responseUrl, image) => {
         "blocks": image.blocks
       })
     })
-    console.log(JSON.stringify(response))
     return response.status === 200
   } catch (err) {
     console.error(err)
