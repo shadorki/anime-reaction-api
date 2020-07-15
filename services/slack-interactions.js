@@ -40,24 +40,22 @@ const shuffleMessage = async (responseUrl, nextImage) => {
 
 const sendMessage = async(responseUrl, image) => {
   try {
-    try {
-      const response = await fetch(responseUrl, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          "delete_original": "true",
-          "response_type": "in_channel",
-          "blocks": image.blocks
-        })
+    const response = await fetch(responseUrl, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        "delete_original": "true",
+        "response_type": "in_channel",
+        "blocks": image.blocks
       })
-      console.log(JSON.stringify(response))
-      return response.status === 200
-    } catch (err) {
-      console.error(err)
-      return false
-    }
+    })
+    console.log(JSON.stringify(response))
+    return response.status === 200
+  } catch (err) {
+    console.error(err)
+    return false
   }
 }
 
