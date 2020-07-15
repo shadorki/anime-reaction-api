@@ -88,19 +88,6 @@ route
         client_secret: process.env.SLACK_CLIENT_SECRET,
         redirect_uri: process.env.SLACK_REDIRECT_URI
       })
-      // let formBody = []
-      // for(const key in data) {
-      //   const prop = encodeURIComponent(key)
-      //   const value = encodeURIComponent(key[data])
-      //   formBody.push(prop + '=' + value)
-      // }
-      // formBody = formBody.join("&")
-      //   + code +
-      //   '&client_id=' + process.env.SLACK_CLIENT_ID +
-      //   '&client_secret=' + process.env.SLACK_CLIENT_SECRET +
-      //   '&redirect_uri=' + process.env.SLACK_REDIRECT_URI
-      // console.log(url)
-      // const response = await fetch(url)
       const response = await fetch('https://slack.com/api/oauth.v2.access', {
         method: 'POST',
         headers: {
