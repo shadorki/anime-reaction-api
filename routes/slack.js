@@ -42,8 +42,8 @@ route
       console.log(req.body)
       const payload = JSON.parse(req.body.payload)
       const { response_url } = payload
-      const interaction = payload.actions[0].value
-      if(interaction === 'cancel_reaction') {
+      const interaction = payload.actions[0].text.text
+      if(interaction === 'Cancel') {
         const isCancelled = await cancelMessage(response_url)
         if(isCancelled) {
           res.status(200)
@@ -51,11 +51,11 @@ route
           throw new ServerError('Unexpected Error Occurred', 500)
         }
       }
-      if (interaction === 'shuffle_reaction') {
-        // const category = payload.
-        const nextReaction = await reactionFinder.findRandomReactionWithCategory()
-        const isCancelled = await shuffleMessage(response_url)
-        if (isCancelled) {
+      if (interaction === 'Shuffle') {
+        const category = payload.actions[0].value
+        const nextReaction = await reactionFinder.findRandomReactionWithCategory(category)
+        const isShuffled = await shuffleMessage(response_url, nextReaction.reaction)
+        if (isShuffled) {
           res.status(200)
         } else {
           throw new ServerError('Unexpected Error Occurred', 500)

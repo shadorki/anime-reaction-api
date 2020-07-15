@@ -33,10 +33,7 @@ const imagePendingBlock = ({reaction, category}) => {
               "text": "Shuffle",
               "emoji": true
             },
-            "value": {
-              "reaction": "shuffle_reaction",
-              "category": category
-            }
+            "value": category
           },
           {
             "type": "button",
