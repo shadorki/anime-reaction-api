@@ -1,5 +1,5 @@
-const imagePendingBlock = ({image, category}) => {
-  if(!image || !category) return null
+const imagePendingBlock = ({reaction, category}) => {
+  if(!reaction || !category) return null
   return {
     "response_type": "ephemeral",
     "blocks": [
@@ -10,7 +10,7 @@ const imagePendingBlock = ({image, category}) => {
           "text": category,
           "emoji": true
         },
-        "image_url": image,
+        "image_url": reaction,
         "alt_text": category
       },
       {
@@ -51,7 +51,7 @@ const imagePendingBlock = ({image, category}) => {
   }
 }
 
-const imageBlock = ({image, category}) => {
+const imageBlock = (image, category) => {
   return {
     "response_type": "in_channel",
     "blocks": [
