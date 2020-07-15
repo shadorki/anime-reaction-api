@@ -51,6 +51,16 @@ route
           throw new ServerError('Unexpected Error Occurred', 500)
         }
       }
+      if (interaction === 'shuffle_reaction') {
+        // const category = payload.
+        const nextReaction = await reactionFinder.findRandomReactionWithCategory()
+        const isCancelled = await shuffleMessage(response_url)
+        if (isCancelled) {
+          res.status(200)
+        } else {
+          throw new ServerError('Unexpected Error Occurred', 500)
+        }
+      }
     } catch(err) {
       console.error(err)
       next(err)
