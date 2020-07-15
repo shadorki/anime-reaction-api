@@ -24,7 +24,10 @@ const imagePendingBlock = ({reaction, category}) => {
               "emoji": true
             },
             "style": "primary",
-            "value": "send_reaction"
+            "value": JSON.stringify({
+              reaction,
+              category
+            })
           },
           {
             "type": "button",

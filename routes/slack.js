@@ -42,6 +42,27 @@ route
       const payload = JSON.parse(req.body.payload)
       const { response_url } = payload
       const interaction = payload.actions[0].text.text
+      const category = payload.actions[0].value
+      let isResponseSuccessful = false
+
+      console.log(category)
+      console.log(typeof category)
+
+      // const actions = {
+      //   Cancel: () => {
+      //     isResponseSuccessful = await cancelMessage(response_url)
+      //   },
+      //   Shuffle: () => {
+      //     const nextReaction = await reactionFinder.findRandomReactionWithCategory(category)
+      //     const nextImage = imagePendingBlock(nextReaction)
+      //     isResponseSuccessful = await shuffleMessage(response_url, nextImage)
+      //   },
+      //   Send: () => {
+      //     const isCancelled = await cancelMessage(response_url)
+      //     const
+      //   }
+      // }
+
       if(interaction === 'Cancel') {
         const isCancelled = await cancelMessage(response_url)
         if(isCancelled) {
