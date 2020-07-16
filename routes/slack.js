@@ -1,9 +1,15 @@
 const route = require('express-promise-router')()
 const reactionFinder = require('../services/file-system')
 const { ClientError, ServerError } = require('../services/errorhandling')
-const { imageBlock, categoriesBlock, notFoundBlock, imagePendingBlock } = require('../services/slack-blocks')
+const {
+      imageBlock,
+      categoriesBlock,
+      notFoundBlock,
+      imagePendingBlock,
+      infoBlock
+    } = require('../services/slack-blocks')
 const { cancelMessage, shuffleMessage, sendMessage } = require('../services/slack-interactions')
-
+const path = require('path')
 const fetch = require('node-fetch')
 
 route
@@ -16,6 +22,9 @@ route
         reaction.category = 'random'
         const image = imagePendingBlock(reaction)
         res.json(image)
+      } else if (command === 'info') {
+        const message = infoBlock()
+        res.json(message)
       } else {
         const categories = await reactionFinder.findCategories()
         if(command === 'categories') {
@@ -96,9 +105,8 @@ route
         body: data
       })
       const responseData = await response.json()
-      console.log(responseData)
       if(responseData.ok) {
-        res.status(200)
+        res.sendFile(path.join(__dirname, '../views/successful-install.html'))
       } else {
         throw new ServerError('Unexpected Error Occurred', 500)
       }

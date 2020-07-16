@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Thank you</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+
+  * {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+  }
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    text-align: center;
+  }
+  .image-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  }
+  .image-container > div {
+    height: 300px;
+    max-width: 300px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 1.2rem auto;
+  }
+  .content {
+    margin: 1.2rem;
+    font-size: 1.2rem;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Thank you for installing Nene bot!</h1>
+    </header>
+    <div class="image-container">
+
+    </div>
+    <div class="content">
+      Nene bot was developed by <a href="https://www.linkedin.com/in/uzair-ashraf-dev/" target="_blank">Uzair Ashraf</a>.
+      It was originally created to be used as an open source api to serve image links pointing to anime reactions.  It is now a Slack bot and may also
+      be used as an api in your projects.  The project is completely open source and you may add your own images
+      if you would like.
+    </div>
+    <div class="content">
+      To get started using Nene, type <strong>/nene info</strong> in Slack to see which commands are available!
+    </div>
+    <div class="content">
+      Want to contribute your own reactions to this project? Find the repo on <a href="https://github.com/uzair-ashraf/anime-reaction-api#contributing-reactions" target="_blank">Github!</a>
+    </div>
+  </div>
+  <script>
+
+  const imageContainer = document.querySelector('.image-container')
+
+  async function getImage() {
+    const response = await fetch('https://anime-reactions.uzairashraf.dev/api/reactions/random?category=yes')
+    const data = await response.json()
+    if(data.reaction) {
+      const image = document.createElement('div')
+      image.style.backgroundImage = `url(${data.reaction})`
+      imageContainer.appendChild(image)
+    }
+  }
+
+  getImage()
+
+  </script>
+</body>
+</html>

@@ -122,10 +122,26 @@ const notFoundBlock = image => {
   }
 }
 
+const infoBlock = () => {
+  return {
+    "response_type": "ephemeral",
+    "blocks": [
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "H- Hello.  My name is Nene. \n\n I- If you wan't me to post a reaction image I need to know wh- what category to pick from. \n\n T- To see which categories I have available type */nene categories*  \n\n Once you find the category type */nene category-name* so I can grab the reaction. \n\n If you just w-wan't a random reaction type */nene* and I will find one randomly.  \n\n I-I'm not perfect so if I mess up p-pwease open an issue on <https://github.com/uzair-ashraf/anime-reaction-api|GitHub>."
+        }
+      }
+    ]
+  }
+}
+
 
 module.exports = {
   imageBlock,
   categoriesBlock,
   notFoundBlock,
-  imagePendingBlock
+  imagePendingBlock,
+  infoBlock
 }
