@@ -1,6 +1,6 @@
 # Anime Reaction API
 
-An API to serve image links of anime reactions
+An API/Slack Bot to serve image links of anime reactions
 
 ## Technologies Used
 
@@ -15,6 +15,7 @@ An API to serve image links of anime reactions
 ## Table Of Contents
 
 - [How to use](#how-to-use)
+- [How to use on Slack](#how-to-use-on-slack)
 - [Contributing Reactions](#contributing-reactions)
 - [Development](#development)
 
@@ -120,7 +121,7 @@ This endpoint will give you a response of a **random** reaction pertaining to th
 - Query Parameters: `category` **( OPTIONAL )**
 - Response:
   ```js
-  {reaction: "https://anime-reactions.uzairashraf.dev/surprised/shocked.jpg"}
+  {reaction: "https://anime-reactions.uzairashraf.dev/angry/pout.gif", category: "angry"}
   ```
 
 Example request using async await and fetch:
@@ -157,6 +158,42 @@ Example request using Ajax:
     success: console.log
   })
 ```
+---
+
+## How to use on Slack
+
+
+  ### Add to your workspace :arrow_down:
+
+  <a href="https://slack.com/oauth/v2/authorize?client_id=866554587907.1252054984657&scope=commands&user_scope=">
+  <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />
+  </a>
+
+  ### Commands
+
+  - **/nene info**
+
+    Displays information about the bot, and which commands are available.
+
+    ![/nene info](doc-images/nene-info.png)
+
+  - **/nene categories**
+
+    Displays a list of categories available to use when generating a reaction.
+
+    ![/nene categories](doc-images/nene-categories.png)
+
+  - **/nene**
+
+    Generates a random reaction. Reaction is random every time you shuffle as well.
+
+    ![/nene](doc-images/nene-random.png)
+
+  - **/nene (category-name)**
+
+    Generates a random reaction based off of the category.
+
+    ![/nene category-name](doc-images/nene-with-category.png)
 
 ---
 
