@@ -23,7 +23,7 @@
   "homepage": "https://github.com/uzair-ashraf/anime-reaction-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "discord.js": "^11.6.1",
+    "discord.js": "11.6.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
