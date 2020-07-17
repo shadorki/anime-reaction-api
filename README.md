@@ -1,6 +1,6 @@
 # Anime Reaction API
 
-An API/Slack Bot to serve image links of anime reactions
+An API/Slack/Discord Bot to serve image links of anime reactions
 
 ## Technologies Used
 
@@ -11,15 +11,17 @@ An API/Slack Bot to serve image links of anime reactions
 - Chai
 - Chai-Http
 - Dotenv
+- Discord.js
 
 ## Table Of Contents
 
-- [How to use](#how-to-use)
+- [How to use as API](#how-to-use-as-api)
 - [How to use on Slack](#how-to-use-on-slack)
+- [How to use on Discord](#how-to-use-on-discord)
 - [Contributing Reactions](#contributing-reactions)
 - [Development](#development)
 
-## How to use
+## How to use as API
 
 All requests must be sent to the following base url:
 
@@ -197,6 +199,43 @@ Example request using Ajax:
 
 ---
 
+## How to use on Discord
+
+
+  ### Add to your server :arrow_down:
+
+  <a href="https://discordapp.com/oauth2/authorize?client_id=733455727775187025&scope=bot&permissions=3072">
+  <img alt="Add to Slack" height="40" width="139" src="doc-images/discord-button.png" />
+  </a>
+
+  ### Commands
+
+  - **!nene info**
+
+    Displays information about the bot, and which commands are available.
+
+    ![!nene info](doc-images/nene-discord-1.png)
+
+  - **!nene categories**
+
+    Displays a list of categories available to use when generating a reaction.
+
+    ![!nene categories](doc-images/nene-discord-2.png)
+
+  - **!nene**
+
+    Generates a random reaction. Reaction is random every time you shuffle as well.
+
+    ![!nene](doc-images/nene-discord-3.png)
+
+  - **!nene (category-name)**
+
+    Generates a random reaction based off of the category.
+
+    ![!nene category-name](doc-images/nene-discord-4.png)
+
+---
+
 ## Contributing Reactions
 
 The anime reactions api is open source and relies heavily on community images.  You are free to make categories on your own. If they are relevant and make sense, then they will be merged into the repository.  **NSFW** images will not be allowed.
@@ -210,6 +249,8 @@ The anime reactions api is open source and relies heavily on community images.  
     - Select the `New Reaction` label along with the `New Category` label if you are adding a category as well
 
     ![How to contribute step 1](doc-images/how-to-contribute-1.png)
+
+    **NOTE: If you are unfamiliar with git, you can stop at this step, and I can add it to the repository from here.**
 
 1. Create a branch
 
