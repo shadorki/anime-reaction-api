@@ -26,6 +26,14 @@ client.on('message', async message => {
       } else if(command === 'categories') {
         const categories = await reactionFinder.findCategories()
         message.channel.send(discordBlocks.categoriesBlock(categories))
+      } else {
+        const categories = await reactionFinder.findCategories()
+        if(categories.includes(command)) {
+          const reaction = await reactionFinder.findRandomReactionWithCategory(command)
+          message.channel.send(discordBlocks.imageBlock(reaction))
+        } else {
+
+        }
       }
     }
   } catch(err) {
