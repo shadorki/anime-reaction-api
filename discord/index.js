@@ -13,8 +13,6 @@ client.on('message', async message => {
     const data = message.content.split(' ')
     const [mainCommand] = data
     if (mainCommand !== '!nene') return;
-    console.log(data)
-    // only random
     if (data.length === 1) {
       const reaction = await reactionFinder.findRandomReaction()
       const image = discordBlocks.imageBlock(reaction)
@@ -32,7 +30,8 @@ client.on('message', async message => {
           const reaction = await reactionFinder.findRandomReactionWithCategory(command)
           message.channel.send(discordBlocks.imageBlock(reaction))
         } else {
-
+          const { reaction } = await reactionFinder.findRandomReactionWithCategory('sad')
+          message.channel.send(discordBlocks.notFoundBlock(reaction))
         }
       }
     }

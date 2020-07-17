@@ -26,8 +26,19 @@ const categoriesBlock = categories => {
   })
 }
 
+const notFoundBlock = image => {
+  return new Discord.RichEmbed({
+    title: '404',
+    description: "WAA- I- I can't understand that command.  P- P- Pwease use the *!nene categories* command to see what I can handle uwu.",
+    thumbnail: {
+      url: image
+    }
+  })
+}
+
 module.exports = {
   imageBlock,
   infoBlock,
-  categoriesBlock
+  categoriesBlock,
+  notFoundBlock
 }
