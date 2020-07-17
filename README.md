@@ -224,7 +224,7 @@ Example request using Ajax:
 
   - **!nene**
 
-    Generates a random reaction. Reaction is random every time you shuffle as well.
+    Generates a random reaction.
 
     ![!nene](doc-images/nene-discord-3.png)
 
